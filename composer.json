@@ -1,0 +1,9 @@
+{
+    "name": "sushan-jobins/shared-scripts",
+    "description": "Shared development scripts for Laravel projects",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "symfony/console": "^6.0|^7.0"
+    }
+}
