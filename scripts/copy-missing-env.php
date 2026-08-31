@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__DIR__).'/vendor/autoload.php';
+require getcwd().'/vendor/autoload.php';
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\ConsoleOutput;
