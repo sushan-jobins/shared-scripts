@@ -139,7 +139,7 @@ function displayCliTable(
         }
     }
 
-    $pink = "\033[35m";
+    $headerColor = "\033[1;36m";
     $reset = "\033[0m";
 
     /*
@@ -159,7 +159,7 @@ function displayCliTable(
 
     foreach ($headers as $index => $header) {
         echo ' '
-            .$pink
+            .$headerColor
             .str_pad(
                 (string) $header,
                 $columnWidths[$index]

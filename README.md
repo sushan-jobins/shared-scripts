@@ -49,7 +49,7 @@ Add the script to your Laravel project's `composer.json`
 
 ```json
 "scripts": {
-    "copy-missing-env": "@php vendor/sushan-jobins/shared-scripts/scripts/copy-missing-env.php",
+    "envm": "@php vendor/sushan-jobins/shared-scripts/scripts/copy-missing-env.php",
 }
 ```
 
@@ -82,7 +82,7 @@ ls -la vendor/sushan-jobins/shared-scripts
 ## Run the script
 
 ```bash
-composer copy-missing-env
+composer envm
 ```
 
 The script displays the environment variable status table.
@@ -129,7 +129,7 @@ same
 ## Show all statuses
 
 ```bash
-composer copy-missing-env -- --status=all
+composer envm --status=all
 ```
 
 This displays all environment variables, including `same`.
@@ -139,7 +139,7 @@ This displays all environment variables, including `same`.
 ## Show added variables
 
 ```bash
-composer copy-missing-env -- --status=added
+composer envm --status=added
 ```
 
 `added` means the environment variable did not exist in the previous `.env` but exists in the current/generated `.env`.
@@ -149,7 +149,7 @@ composer copy-missing-env -- --status=added
 ## Show changed variables
 
 ```bash
-composer copy-missing-env -- --status=changed
+composer envm --status=changed
 ```
 
 `changed` means the environment variable existed before, but its value has changed.
@@ -159,7 +159,7 @@ composer copy-missing-env -- --status=changed
 ## Show variables not changed in `.env`
 
 ```bash
-composer copy-missing-env -- --status=not_changed_on_env
+composer envm --status=not_changed_on_env
 ```
 
 `not_changed_on_env` means:
@@ -172,7 +172,7 @@ composer copy-missing-env -- --status=not_changed_on_env
 ## Show only_on_env variables
 
 ```bash
-composer copy-missing-env -- --status=only_on_env
+composer envm --status=only_on_env
 ```
 
 `only_on_env` means no change or update was detected for the environment variable.
@@ -182,7 +182,7 @@ composer copy-missing-env -- --status=only_on_env
 ## Show variables with the same value
 
 ```bash
-composer copy-missing-env -- --status=same
+composer envm --status=same
 ```
 
 `same` means the current `.env` value is exactly the same as the `.env.example` value.
@@ -194,7 +194,7 @@ composer copy-missing-env -- --status=same
 To see the meaning of each status:
 
 ```bash
-composer copy-missing-env -- --info-status
+composer envm --info-status
 ```
 
 The command displays information for:
@@ -214,7 +214,7 @@ UNCHANGED
 To check which environment variables are missing without modifying `.env`:
 
 ```bash
-composer copy-missing-env -- --dry
+composer envm --dry
 ```
 
 The dry run only displays variables that exist in `.env.example` but are missing from `.env`.
@@ -227,15 +227,15 @@ No changes are made to `.env`.
 
 | Purpose               | Command                                                    |
 | --------------------- | ---------------------------------------------------------- |
-| Run script            | `composer copy-missing-env`                                |
-| Show all              | `composer copy-missing-env -- --status=all`                |
-| Added                 | `composer copy-missing-env -- --status=added`              |
-| Changed               | `composer copy-missing-env -- --status=changed`            |
-| Not changed on `.env` | `composer copy-missing-env -- --status=not_changed_on_env` |
-| Only  on `.env`       | `composer copy-missing-env -- --status=only_on_env`        |
-| Same                  | `composer copy-missing-env -- --status=same`               |
-| Status information    | `composer copy-missing-env -- --info-status`               |
-| Dry run               | `composer copy-missing-env -- --dry`                       |
+| Run script            | `composer envm`                                |
+| Show all              | `composer envm --status=all`                |
+| Added                 | `composer envm --status=added`              |
+| Changed               | `composer envm --status=changed`            |
+| Not changed on `.env` | `composer envm --status=not_changed_on_env` |
+| Only  on `.env`       | `composer envm --status=only_on_env`        |
+| Same                  | `composer envm --status=same`               |
+| Status information    | `composer envm --info-status`               |
+| Dry run               | `composer envm --dry`                       |
 
 ---
 
@@ -280,25 +280,25 @@ composer require --dev sushan-jobins/shared-scripts:dev-main
 ### 3. Run
 
 ```bash
-composer copy-missing-env
+composer envm
 ```
 
 ### 4. Show all statuses
 
 ```bash
-composer copy-missing-env -- --status=all
+composer envm --status=all
 ```
 
 ### 5. Dry run
 
 ```bash
-composer copy-missing-env -- --dry
+composer envm --dry
 ```
 
 ### 6. Show status descriptions
 
 ```bash
-composer copy-missing-env -- --info-status
+composer envm --info-status
 ```
 
 ---
