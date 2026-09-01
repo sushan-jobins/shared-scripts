@@ -79,8 +79,6 @@ ls -la vendor/sushan-jobins/shared-scripts
 
 ---
 
-# Usage
-
 ## Run the script
 
 ```bash
@@ -124,7 +122,7 @@ all
 added
 changed
 not_changed_on_env
-unchanged
+only_on_env
 same
 ```
 
@@ -171,13 +169,13 @@ composer copy-missing-env -- --status=not_changed_on_env
 
 ---
 
-## Show unchanged variables
+## Show only_on_env variables
 
 ```bash
-composer copy-missing-env -- --status=unchanged
+composer copy-missing-env -- --status=only_on_env
 ```
 
-`unchanged` means no change or update was detected for the environment variable.
+`only_on_env` means no change or update was detected for the environment variable.
 
 ---
 
@@ -222,34 +220,6 @@ composer copy-missing-env -- --dry
 The dry run only displays variables that exist in `.env.example` but are missing from `.env`.
 
 No changes are made to `.env`.
-
----
-
-# Output
-
-The status table contains:
-
-```text
-env
-value in example
-previous value in env
-current value in env
-status
-```
-
-Example:
-
-```text
-+------------+------------------+----------------------+----------------------+----------------------+
-| env        | value in example | previous value in env| current value in env | status               |
-+------------+------------------+----------------------+----------------------+----------------------+
-| APP_NAME   | Laravel          | Laravel              | Laravel              | same                 |
-| APP_ENV    | local            | local                | production           | changed              |
-| NEW_KEY    | test             | -                    | test                 | added                |
-+------------+------------------+----------------------+----------------------+----------------------+
-```
-
-Rows are color-coded according to their status.
 
 ---
 
