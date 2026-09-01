@@ -509,7 +509,7 @@ function confirmEnvUpdate(
     }
 
     echo "\n";
-    echo "\033[33m⚠ .env changes are available.\033[0m\n";
+    echo "\033[33m⚠ Changes from .env.example are available for your .env file\033[0m\n";
     echo "\033[36mApply these changes to .env? \033[33m(yes/no) [no]: \033[0m";
 
     $answer = trim(fgets(STDIN));
