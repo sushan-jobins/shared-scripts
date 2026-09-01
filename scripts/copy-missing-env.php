@@ -50,7 +50,7 @@ $allowedStatuses = [
     'added',
     'changed',
     'not_changed_on_env',
-    'unchanged',
+    'only_on_env',
     'same',
 ];
 
@@ -236,7 +236,7 @@ function displayStatusInfo(): void
             'color'       => "\033[90m",
             'description' => 'Current .env value is the same as the value in .env.example.',
         ],
-        'unchanged' => [
+        'only_on_env' => [
             'color'       => "\033[36m",
             'description' => 'No change or update was detected for this environment variable.',
         ],
@@ -359,7 +359,7 @@ function generateStatusRows(
         'added'              => 1,
         'changed'            => 2,
         'not_changed_on_env' => 3,
-        'unchanged'          => 4,
+        'only_on_env'          => 4,
         'same'               => 5,
     ];
 
@@ -391,7 +391,7 @@ function generateStatusRows(
         ) {
             $status = 'same';
         } else {
-            $status = 'unchanged';
+            $status = 'only_on_env';
         }
 
         // When no status is supplied, don't show "same".
@@ -441,7 +441,7 @@ function formatRows(array $rows, int $maxLen): array
                 'added'              => 'green',
                 'changed'            => 'yellow',
                 'not_changed_on_env' => 'red',
-                'unchanged'          => 'cyan',
+                'only_on_env'          => 'cyan',
                 'same'               => 'gray',
             };
 
