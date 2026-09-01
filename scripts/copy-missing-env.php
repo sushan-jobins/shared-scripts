@@ -120,6 +120,75 @@ function getCurrentEnvMap(string $envFile): array
 }
 
 /**
+ * Render a simple CLI table.
+ */
+function renderCliTable(array $headers, array $rows): void
+{
+    // Fixed width for each column.
+    $columnWidths = [
+        25,
+        40,
+    ];
+
+    $separator = '+';
+
+    foreach ($columnWidths as $width) {
+        $separator .= str_repeat('-', $width + 2) . '+';
+    }
+
+    // Top border
+    echo $separator . PHP_EOL;
+
+    // Header
+    echo '|';
+
+    foreach ($headers as $index => $header) {
+        $header = truncateText(
+            (string) $header,
+            $columnWidths[$index]
+        );
+
+        echo ' '
+            . str_pad(
+                $header,
+                $columnWidths[$index],
+                ' '
+            )
+            . ' |';
+    }
+
+    echo PHP_EOL;
+
+    // Header separator
+    echo $separator . PHP_EOL;
+
+    // Rows
+    foreach ($rows as $row) {
+        echo '|';
+
+        foreach ($row as $index => $value) {
+            $value = truncateText(
+                (string) $value,
+                $columnWidths[$index]
+            );
+
+            echo ' '
+                . str_pad(
+                    $value,
+                    $columnWidths[$index],
+                    ' '
+                )
+                . ' |';
+        }
+
+        echo PHP_EOL;
+    }
+
+    // Bottom border
+    echo $separator . PHP_EOL;
+}
+
+/**
  * Check for dry parameter robustly.
  */
 function isDryRun(array $argv): bool
@@ -195,18 +264,26 @@ function displayDryRun(
             ];
         }
 
-        $output = new ConsoleOutput();
+        // $output = new ConsoleOutput();
 
-        $table = new Table($output);
+        // $table = new Table($output);
 
-        $table
-            ->setHeaders([
+        // $table
+        //     ->setHeaders([
+        //         '.env.example',
+        //         'value in .env.example',
+        //     ])
+        //     ->setRows($missingRows);
+
+        // $table->render();
+
+        renderCliTable(
+            [
                 '.env.example',
                 'value in .env.example',
-            ])
-            ->setRows($missingRows);
-
-        $table->render();
+            ],
+            $missingRows
+        );
 
         echo "\n";
     } else {
@@ -509,7 +586,7 @@ function confirmEnvUpdate(
     }
 
     echo "\n";
-    echo "\033[33m⚠ .env changes are available.\033[0m\n";
+    echo "\033[33m⚠ Changes from .env.example are available for your .env file\033[0m\n";
     echo "\033[36mApply these changes to .env? \033[33m(yes/no) [no]: \033[0m";
 
     $answer = trim(fgets(STDIN));
